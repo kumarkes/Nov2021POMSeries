@@ -21,7 +21,7 @@ public class LoginPageTest extends BaseTest {
 	@Test
 	public void loginPageTitleTest() {
 		String title = loginPage.getLoginPageTitle();
-		System.out.println("Login page title is : " + title);
+		System.out.println("Login page title is updated (to validate in git): " + title);
 		Assert.assertEquals(title, Constants.LOGIN_PAGE_TITLE);
 	}
 
