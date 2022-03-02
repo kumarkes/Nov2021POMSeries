@@ -8,18 +8,24 @@
 		<listener class-name="com.qa.opencart.listeners.ExtentReportListener" />
 		<listener class-name="com.qa.opencart.listeners.TestAllureListener" />
 	</listeners>
-	<test name="Login Page Test">
+	<test name="Login Page Test - ch - 96.0">
+		<parameter name="browser" value="chrome" />
+		<parameter name="browserversion" value="96.0" />
 		<classes>
 			<class name="com.qa.opencart.tests.LoginPageTest" />
 		</classes>
 	</test>
-	<test name="Accounts Page Test">
+	<test name="Accounts Page Test - ff - 83.0">
+		<parameter name="browser" value="firefox" />
+		<parameter name="browserversion" value="83.0" />
 		<classes>
 			<class name="com.qa.opencart.tests.AccountsPageTest" />
 		</classes>
 	</test>
 
-	<test name="Register Page Test">
+	<test name="Register Page Test - ch - 91.0">
+		<parameter name="browser" value="chrome" />
+		<parameter name="browserversion" value="91.0" />
 		<classes>
 			<class name="com.qa.opencart.tests.RegisterPageTest" />
 		</classes>

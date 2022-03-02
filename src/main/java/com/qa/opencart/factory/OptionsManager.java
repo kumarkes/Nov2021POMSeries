@@ -22,6 +22,10 @@ public class OptionsManager {
 			co.addArguments("--headless");
 		if (Boolean.parseBoolean(prop.getProperty("incognito")))
 			co.addArguments("--incognito");
+		if (Boolean.parseBoolean(prop.getProperty("remote"))) {
+			co.setBrowserVersion(prop.getProperty("browserverion"));
+			co.setPlatformName("linux");
+		}
 		return co;
 	}
 
@@ -30,7 +34,11 @@ public class OptionsManager {
 		if (Boolean.parseBoolean(prop.getProperty("headless")))
 			fo.addArguments("--headless");
 		if (Boolean.parseBoolean(prop.getProperty("incognito")))
-			co.addArguments("--incognito");
+			fo.addArguments("--incognito");
+		if (Boolean.parseBoolean(prop.getProperty("remote"))) {
+			fo.setBrowserVersion(prop.getProperty("browserverion"));
+			fo.setPlatformName("linux");
+		}
 		return fo;
 	}
 
@@ -39,7 +47,11 @@ public class OptionsManager {
 		if (Boolean.parseBoolean(prop.getProperty("headless")))
 			eo.addArguments("--headless");
 		if (Boolean.parseBoolean(prop.getProperty("incognito")))
-			co.addArguments("--incognito");
+			eo.addArguments("--incognito");
+		if (Boolean.parseBoolean(prop.getProperty("remote"))) {
+			eo.setBrowserVersion(prop.getProperty("browserverion"));
+			eo.setPlatformName("linux");
+		}
 		return eo;
 	}
 

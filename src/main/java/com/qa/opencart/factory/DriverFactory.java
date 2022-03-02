@@ -37,11 +37,14 @@ public class DriverFactory {
 
 	public WebDriver init_driver(Properties prop) {
 		String browserName = prop.getProperty("browser").trim();
+		String browserVersion = prop.getProperty("browserversion").trim();
 		highlight = prop.getProperty("highlight").trim();
-		System.out.println("Browser Name Is : " + browserName);
+
+		System.out.println("Browser Name Is : " + browserName + "BrowserVersion is : " + browserVersion);
 		optionsManager = new OptionsManager(prop);
+
 		if (browserName.equalsIgnoreCase("chrome")) {
-			WebDriverManager.chromedriver().setup();
+			// WebDriverManager.chromedriver().setup();
 			// driver = new ChromeDriver(optionsManager.getChromeOptions());
 
 			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
@@ -49,6 +52,7 @@ public class DriverFactory {
 				init_remoteDriver("chrome");
 			} else {
 				// Local Execution
+				WebDriverManager.chromedriver().setup();
 				tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
 			}
 
@@ -122,17 +126,38 @@ public class DriverFactory {
 	public Properties init_prop() {
 
 		prop = new Properties();
-		try {
-			FileInputStream ip = new FileInputStream("./src/test/resources/config/config.properties");
-			prop.load(ip);
-		} catch (FileNotFoundException e) {
+		FileInputStream ip = null;
 
+		// mvn clean install -Denv="qa"
+		String envName = System.getProperty("env").trim();// qa/stage/dev
+		System.out.println(envName + "------------");
+		System.out.println("Running test on environments...." + envName);
+		try {
+			switch (envName.toLowerCase()) {
+			case "qa":
+				ip = new FileInputStream("./src/test/resources/config/qa.config.properties");
+				break;
+			case "dev":
+				ip = new FileInputStream("./src/test/resources/config/dev.config.properties");
+				break;
+			case "stage":
+				ip = new FileInputStream("./src/test/resources/config/stage.config.properties");
+				break;
+
+			default:
+				System.out.println("Please pass the right env");
+				break;
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		try {
+			prop.load(ip);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return prop;
-
+		
 	}
 
 	// Thread Local --JDK 1.8 --> Create a local copy of driver
