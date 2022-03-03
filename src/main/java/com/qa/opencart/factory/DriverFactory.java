@@ -129,7 +129,7 @@ public class DriverFactory {
 		FileInputStream ip = null;
 
 		// mvn clean install -Denv="qa"
-		String envName = System.getProperty("env").trim();// qa/stage/dev
+		String envName = System.getProperty("env");// qa/stage/dev
 		System.out.println(envName + "------------");
 		System.out.println("Running test on environments...." + envName);
 		try {

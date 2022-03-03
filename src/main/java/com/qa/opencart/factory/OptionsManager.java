@@ -25,6 +25,7 @@ public class OptionsManager {
 		if (Boolean.parseBoolean(prop.getProperty("remote"))) {
 			co.setBrowserVersion(prop.getProperty("browserverion"));
 			co.setPlatformName("linux");
+			co.setCapability("enableVNC", true);
 		}
 		return co;
 	}
